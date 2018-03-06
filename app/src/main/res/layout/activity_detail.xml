@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:fillViewport="true">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -61,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_star_rate_white_18px"
+            android:drawableStart="@drawable/ic_details_rating"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
@@ -75,7 +77,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
-            android:src="@drawable/ic_favorite_border_white_18px"
+            android:src="@drawable/ic_details_favourite_border"
             app:layout_constraintTop_toBottomOf="@id/backdrop_iv"
             app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end" />
 

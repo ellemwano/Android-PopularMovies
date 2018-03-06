@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mDrawer = (DrawerLayout)
                 findViewById(R.id.drawer_layout);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Set toolbar as action bar
         setSupportActionBar(mToolbar);
 
         ActionBarDrawerToggle toggle =
