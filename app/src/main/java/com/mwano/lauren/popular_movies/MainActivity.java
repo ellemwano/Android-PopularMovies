@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         NavigationView.OnNavigationItemSelectedListener {
 
     private static final String POPULAR_URL = "http://api.themoviedb.org/3/movie/popular?api_key=";
-    private static final String API_KEY = "";
+    private static final String API_KEY = BuildConfig.API_KEY;
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private RecyclerView mRecyclerView;
