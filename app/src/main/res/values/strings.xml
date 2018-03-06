@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">PopularMovies</string>
+
+    <!-- Navigation Drawer - Navigation Header -->
+    <string name="my_app_title">Popular Movies</string>
+
+    <!-- Navigation Drawer - Menu-->
+    <string name="popular_movies">Popular movies</string>
+    <string name="top_rated_movies">Top-rated movies</string>
+    <string name="favourite_movies">My favourite movies</string>
+
+    <!-- Navigation Drawer - ActionBarDrawerToggle -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- OnNavigationItemSelected Menu toasts -->
+    <string name="toast_popular">Will sort by Popular Movies</string>
+    <string name="toast_top_rated">Will sort by Top Rated Movies</string>
+    <string name="toast_favourites">Coming soon. Will get my Favourite Movies</string>
+
+</resources>

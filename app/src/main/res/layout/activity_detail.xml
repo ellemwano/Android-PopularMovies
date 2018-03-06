@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#263238">
+
+        <ImageView
+            android:id="@+id/backdrop_iv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fitsSystemWindows="false"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_vertical_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_vertical_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.96" />
+
+        <ImageView
+            android:id="@+id/poster_iv"
+            android:layout_width="0dp"
+            android:layout_height="185dp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_title"
+            app:layout_constraintDimensionRatio="w,400:576"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start" />
+
+        <TextView
+            android:id="@+id/release_date_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/rating_tv"
+            app:layout_constraintEnd_toStartOf="@id/rating_tv"
+            app:layout_constraintStart_toEndOf="@id/poster_iv"
+            tools:text="2018-02-20" />
+
+        <TextView
+            android:id="@+id/rating_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_star_rate_white_18px"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@id/favourite"
+            app:layout_constraintTop_toBottomOf="@id/backdrop_iv"
+            tools:text="8.0" />
+
+        <ImageView
+            android:id="@+id/favourite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:src="@drawable/ic_favorite_border_white_18px"
+            app:layout_constraintTop_toBottomOf="@id/backdrop_iv"
+            app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end" />
+
+        <TextView
+            android:id="@+id/original_title_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/barrier_title"
+            app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+            app:layout_constraintStart_toEndOf="@id/poster_iv"
+            app:layout_constraintTop_toBottomOf="@id/release_date_tv"
+            tools:text="Title of the movie - can be long" />
+
+        <android.support.constraint.Barrier
+            android:id="@+id/barrier_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="original_title_tv, poster_iv" />
+
+        <TextView
+            android:id="@+id/synopsis_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintTop_toTopOf="@+id/barrier_title"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/more_to_come"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="(More features coming soon...)"
+            android:textStyle="italic"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintTop_toBottomOf="@+id/synopsis_tv" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
