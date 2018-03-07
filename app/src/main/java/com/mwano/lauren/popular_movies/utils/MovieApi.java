@@ -20,10 +20,11 @@ public class MovieApi {
     private static final String API_KEY = BuildConfig.API_KEY;
     private static final String TAG = MovieApi.class.getSimpleName();
 
-    public static URL buildUrl(String sort) {
+    public static URL buildUrl(String sortType) {
+
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
-                .appendPath(sort)
+                .appendPath(sortType)
                 .appendQueryParameter(API_END, API_KEY)
                 .build();
 
@@ -33,9 +34,7 @@ public class MovieApi {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         Log.i(TAG, "Built URI " + url);
-
         return url;
     }
 

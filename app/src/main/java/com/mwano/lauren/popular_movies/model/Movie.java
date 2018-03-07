@@ -25,10 +25,6 @@ public class Movie implements Parcelable {
     private static final String BASE_POSTER_PATH = "http://image.tmdb.org/t/p/w185/";
     private static final String BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w500/";
 
-
-    public Movie() {
-    }
-
     public Movie
             (int id, String imagePath, String backdropPath, String originalTitle, String synopsis, String releaseDate,
              Double rating) {

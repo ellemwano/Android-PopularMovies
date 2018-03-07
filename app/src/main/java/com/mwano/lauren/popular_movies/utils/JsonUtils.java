@@ -52,21 +52,15 @@ public class JsonUtils {
 
                     Movie movie = new Movie(id, imagePath, backdropPath, originalTitle, synopsis, releaseDate, rating);
                     movies.add(movie);
-                    // Log.i(TAG, movies.toString());
                 }
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
             Log.e(TAG, "Problem parsing json");
-            //return null;
+            return null;
         }
-
         return movies;
-
     }
-
-
 }
 
 

@@ -52,9 +52,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public void onBindViewHolder(MovieViewHolder movieViewHolder, int position) {
         Context context = movieViewHolder.mMovieImageView.getContext();
         Movie mCurrentMovie = mMovies.get(position);
-        // TODO set up PosterPath url = mCurrentMovie.getPosterPath()
-        Picasso.with(context).load("http://image.tmdb.org/t/p/w185//"
-                + mCurrentMovie.getImagePath()).into(movieViewHolder.mMovieImageView);
+        Picasso.with(context).load(Movie.buildFullPosterPath(mCurrentMovie))
+                .into(movieViewHolder.mMovieImageView);
     }
 
     @Override
@@ -78,7 +77,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         public MovieViewHolder(View view) {
             super(view);
             mMovieImageView = (ImageView)view.findViewById(R.id.movie_poster);
-            // this.mAdapter = adapter;
             view.setOnClickListener(this);
         }
 

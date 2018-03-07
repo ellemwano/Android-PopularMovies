@@ -38,9 +38,10 @@ public class DetailActivity extends AppCompatActivity{
         mReleaseView = (TextView) findViewById(R.id.release_date_tv);
         mRatingView = (TextView) findViewById(R.id.rating_tv);
 
+        // Details intent from Movies grid
         Intent intentThatStartedThisActivity = getIntent();
-//        if (intentThatStartedThisActivity != null) {
-//            if (intentThatStartedThisActivity.hasExtra("movie")) {
+        if (intentThatStartedThisActivity != null) {
+            if (intentThatStartedThisActivity.hasExtra("movie")) {
                 Movie currentMovie = intentThatStartedThisActivity.getParcelableExtra("movie");
                 Picasso.with(this).load(Movie.buildFullPosterPath(currentMovie))
                         .into(mPosterView);
@@ -51,15 +52,14 @@ public class DetailActivity extends AppCompatActivity{
                 mReleaseView.setText(currentMovie.getReleaseDate());
                 mRatingView.setText(String.valueOf(currentMovie.getRating()));
                 setTitle(currentMovie.getOriginalTitle());
-           // }
-        //}
+            }
+        }
 
         // Set the action bar button to look like an up button
         ActionBar actionBar = this.getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
     }
 
     @Override

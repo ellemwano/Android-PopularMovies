@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
             navigationView.setNavigationItemSelectedListener(this);
 
         loadMovieData(POPULAR);
-        setTitle("Popular Movies App");
+        setTitle(R.string.my_app_title);
         //Log.i(TAG, String.valueOf(movies));
         }
     }
@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
             if (params.length == 0) {
                 return null;
             }
-
             String movieSort = params[0];
             URL movieRequestUrl = MovieApi.buildUrl(movieSort);
 
@@ -121,11 +120,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                        break;
                    // Default exception
                    default:
-                       throw new UnsupportedOperationException("Unknown url: " + movieRequestUrl);               }
-
+                       throw new UnsupportedOperationException("Unknown url: " + movieRequestUrl);
+               }
                 String jsonResponse = NetworkUtils.httpConnect(movieRequestUrl);
-                // Log.i(TAG, jsonResponse);
-                // jsonResponse ok.  OK connection
                 return JsonUtils.parseMovieJson(jsonResponse);
 
             } catch (IOException e) {
@@ -152,19 +149,19 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_popular:
-                // Handle the camera import action (for now display a toast).
+                // Sort movies by Popular Movies
                 drawer.closeDrawer(GravityCompat.START);
                 loadMovieData(POPULAR);
-                setTitle("Popular Movies");
+                setTitle(R.string.popular_movies);
                 return true;
             case R.id.nav_top_rated:
-                // Handle the gallery action (for now display a toast).
+                // Sort movies by Top Rated Movies
                 drawer.closeDrawer(GravityCompat.START);
                 loadMovieData(TOP_RATED);
-                setTitle("Top Rated Movies");
+                setTitle(R.string.top_rated_movies);
                 return true;
             case R.id.nav_favourite:
-                // Handle the slideshow action (for now display a toast).
+                // Will handle displaying User's favourite movies (for now display a toast).
                 drawer.closeDrawer(GravityCompat.START);
                 Toast.makeText(context, getString(R.string.toast_favourites), Toast.LENGTH_LONG).show();
                 return true;
