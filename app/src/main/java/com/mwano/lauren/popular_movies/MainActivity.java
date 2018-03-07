@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.mwano.lauren.popular_movies.model.Movie;
 import com.mwano.lauren.popular_movies.utils.JsonUtils;
+import com.mwano.lauren.popular_movies.utils.MovieApi;
 import com.mwano.lauren.popular_movies.utils.NetworkUtils;
 
 import java.io.IOException;
@@ -28,8 +29,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler,
         NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String POPULAR_URL = "http://api.themoviedb.org/3/movie/popular?api_key=";
-    private static final String API_KEY = BuildConfig.API_KEY;
+    private static final String POPULAR = "popular";
+    private static final String TOP_RATED = "top_rated";
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private RecyclerView mRecyclerView;
@@ -76,7 +77,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
 
-        new FetchMovies().execute();
+        loadMovieData(POPULAR);
+        setTitle("Popular Movies App");
         //Log.i(TAG, String.valueOf(movies));
         }
     }
@@ -93,20 +95,35 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     /**
      * Create an AsyncTask for the http connection and JSON parsing
      */
-    public class FetchMovies extends AsyncTask <URL, Void, ArrayList<Movie>> {
+    public class FetchMoviesTask extends AsyncTask <String, Void, ArrayList<Movie>> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
 
         @Override
-        protected ArrayList<Movie> doInBackground(URL... urls) {
+        protected ArrayList<Movie> doInBackground(String... params) {
+
+            if (params.length == 0) {
+                return null;
+            }
+
+            String movieSort = params[0];
+            URL movieRequestUrl = MovieApi.buildUrl(movieSort);
 
             try {
-                // TODO set new base url for start screen
-                URL url = NetworkUtils.checkUrl(POPULAR_URL+API_KEY);
-                // TODO rename jsonResponse to general request or smthg
-                String jsonResponse = NetworkUtils.httpConnect(url);
+               switch (movieSort) {
+                   case POPULAR:
+                       movieRequestUrl = MovieApi.buildUrl(POPULAR);
+                       break;
+                   case TOP_RATED:
+                       movieRequestUrl = MovieApi.buildUrl(TOP_RATED);
+                       break;
+                   // Default exception
+                   default:
+                       throw new UnsupportedOperationException("Unknown url: " + movieRequestUrl);               }
+
+                String jsonResponse = NetworkUtils.httpConnect(movieRequestUrl);
                 // Log.i(TAG, jsonResponse);
                 // jsonResponse ok.  OK connection
                 return JsonUtils.parseMovieJson(jsonResponse);
@@ -137,12 +154,14 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
             case R.id.nav_popular:
                 // Handle the camera import action (for now display a toast).
                 drawer.closeDrawer(GravityCompat.START);
-                Toast.makeText(context, getString(R.string.toast_popular), Toast.LENGTH_LONG).show();
+                loadMovieData(POPULAR);
+                setTitle("Popular Movies");
                 return true;
             case R.id.nav_top_rated:
                 // Handle the gallery action (for now display a toast).
                 drawer.closeDrawer(GravityCompat.START);
-                Toast.makeText(context, getString(R.string.toast_top_rated), Toast.LENGTH_LONG).show();
+                loadMovieData(TOP_RATED);
+                setTitle("Top Rated Movies");
                 return true;
             case R.id.nav_favourite:
                 // Handle the slideshow action (for now display a toast).
@@ -153,4 +172,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                 return false;
         }
     }
+
+    private void loadMovieData(String sortMode) {
+        new FetchMoviesTask().execute(sortMode);
+    }
+
 }

@@ -1,7 +1,12 @@
 package com.mwano.lauren.popular_movies.model;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.MalformedInputException;
 
 /**
  * Created by ElleMwa on 22/02/2018.
@@ -16,6 +21,9 @@ public class Movie implements Parcelable {
     private String mSynopsis;
     private String mReleaseDate;
     private double mRating;
+
+    private static final String BASE_POSTER_PATH = "http://image.tmdb.org/t/p/w185/";
+    private static final String BASE_BACKDROP_PATH = "http://image.tmdb.org/t/p/w500/";
 
 
     public Movie() {
@@ -89,7 +97,29 @@ public class Movie implements Parcelable {
         mRating = rating;
     }
 
-    // Parcelable
+    public static Uri buildFullPosterPath (Movie movie) {
+        Uri builtPosterUri = null;
+        try {
+            builtPosterUri = Uri.parse(BASE_POSTER_PATH
+                    + movie.getImagePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return builtPosterUri;
+    }
+
+    public static Uri buildFullBackdropPath (Movie movie) {
+        Uri builtBackdropUri = null;
+        try {
+            builtBackdropUri = Uri.parse(BASE_BACKDROP_PATH
+                    + movie.getBackdropPath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return builtBackdropUri;
+    }
+
+    // Implement Parcelable
     private Movie(Parcel in) {
         mId = in.readInt();
         mImagePath = in.readString();
@@ -105,7 +135,6 @@ public class Movie implements Parcelable {
         return 0;
     }
 
-    //????
     public String toString() {
         return mId + "--" + mImagePath + "--" + mBackdropPath + "--" + mOriginalTitle + "--"
                 + mSynopsis + "--" + mReleaseDate + "--" + mRating;

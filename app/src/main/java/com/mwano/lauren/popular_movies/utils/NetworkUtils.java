@@ -31,18 +31,4 @@ public class NetworkUtils {
             urlConnection.disconnect();
         }
     }
-
-    // TODO change for url builder
-    public  static URL checkUrl (String urlConcat) {
-        URL url = null;
-        try {
-            url = new URL(urlConcat);
-        } catch (MalformedURLException exception){
-            // do something
-        }
-        return url;
-    }
-
-
-
 }

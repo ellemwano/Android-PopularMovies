@@ -42,15 +42,15 @@ public class DetailActivity extends AppCompatActivity{
 //        if (intentThatStartedThisActivity != null) {
 //            if (intentThatStartedThisActivity.hasExtra("movie")) {
                 Movie currentMovie = intentThatStartedThisActivity.getParcelableExtra("movie");
-
-                Picasso.with(this).load("http://image.tmdb.org/t/p/w185//"
-                + currentMovie.getImagePath()).into(mPosterView);
-                Picasso.with(this).load("http://image.tmdb.org/t/p/w500//"
-                        + currentMovie.getBackdropPath()).into(mBackdropView);
+                Picasso.with(this).load(Movie.buildFullPosterPath(currentMovie))
+                        .into(mPosterView);
+                Picasso.with(this).load(Movie.buildFullBackdropPath(currentMovie))
+                        .into(mBackdropView);
                 mTitleView.setText(currentMovie.getOriginalTitle());
                 mSynopsisView.setText(currentMovie.getSynopsis());
                 mReleaseView.setText(currentMovie.getReleaseDate());
                 mRatingView.setText(String.valueOf(currentMovie.getRating()));
+                setTitle(currentMovie.getOriginalTitle());
            // }
         //}
 
