@@ -1,11 +1,12 @@
 package com.mwano.lauren.popular_movies;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity{
 
+    private Toolbar mToolbar;
     private ImageView mBackdropView;
     private ImageView mPosterView;
     private TextView mTitleView;
@@ -30,6 +32,8 @@ public class DetailActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        mToolbar = (Toolbar) findViewById(R.id.details_toolbar);
+        setSupportActionBar(mToolbar);
 
         mPosterView = (ImageView) findViewById(R.id.poster_iv);
         mBackdropView = (ImageView) findViewById(R.id.backdrop_iv);
@@ -56,7 +60,7 @@ public class DetailActivity extends AppCompatActivity{
         }
 
         // Set the action bar button to look like an up button
-        ActionBar actionBar = this.getActionBar();
+        ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
