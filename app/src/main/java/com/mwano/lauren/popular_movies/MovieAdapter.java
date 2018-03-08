@@ -41,18 +41,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        mContext = parent.getContext();
         int layoutIdForMovieItem = R.layout.movie_item;
-        LayoutInflater mInflater = LayoutInflater.from(context);
+        LayoutInflater mInflater = LayoutInflater.from(mContext);
         View mItemView = mInflater.inflate(layoutIdForMovieItem, parent, false);
         return new MovieViewHolder(mItemView);
     }
 
     @Override
     public void onBindViewHolder(MovieViewHolder movieViewHolder, int position) {
-        Context context = movieViewHolder.mMovieImageView.getContext();
+        mContext = movieViewHolder.mMovieImageView.getContext();
         Movie mCurrentMovie = mMovies.get(position);
-        Picasso.with(context).load(Movie.buildFullPosterPath(mCurrentMovie))
+        Picasso.with(mContext).load(Movie.buildFullPosterPath(mCurrentMovie))
                 .into(movieViewHolder.mMovieImageView);
     }
 

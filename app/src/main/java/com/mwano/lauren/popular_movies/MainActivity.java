@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_movies);
         // Set GridLinearLayout to RecyclerView
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        mRecyclerView.setHasFixedSize(true);
         // Create new Adapter and set to RecyclerView in layout
         mMovieAdapter = new MovieAdapter(this, movies, this);
         mRecyclerView.setAdapter(mMovieAdapter);
