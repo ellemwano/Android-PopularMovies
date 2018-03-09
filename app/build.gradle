@@ -25,7 +25,6 @@ android {
         mavenCentral()
     }
     buildToolsVersion '26.0.3'
-
 }
 
 dependencies {

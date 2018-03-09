@@ -24,8 +24,6 @@ import com.mwano.lauren.popular_movies.utils.JsonUtils;
 import com.mwano.lauren.popular_movies.utils.MovieApi;
 import com.mwano.lauren.popular_movies.utils.NetworkUtils;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -46,9 +44,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     private Toolbar mToolbar;
 
 
-
-    // TODO Add Error message on screen when no internet connection
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +54,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         // Get reference to error TextView
         mConnectionErrorMessageDisplay = (TextView) findViewById(R.id.connection_error_message_tv);
         // Set GridLinearLayout to RecyclerView, 2 columns if vertical, 4 columns if horizontal
-        // (Source code, Udacity forum mentor Nisha Shinde: https://discussions.udacity.com/t/gridlayoutmanager-recyclerview/499251/4)
+        // (Source code, Udacity forum mentor Nisha Shinde:
+        // https://discussions.udacity.com/t/gridlayoutmanager-recyclerview/499251/4)
         mColumnsNumber = (int) getResources().getInteger(R.integer.num_of_columns);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, mColumnsNumber));
         mRecyclerView.setHasFixedSize(true);
@@ -68,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mRecyclerView.setAdapter(mMovieAdapter);
 
         // Instantiate the navigation drawer
+        //(Code source, Google's Android Developer Fundamental Course:
+        // https://google-developer-training.gitbooks.io
+        // /android-developer-fundamentals-course-concepts/content/en/Unit%202/42_c_menus.html
         mDrawer = (DrawerLayout)
                 findViewById(R.id.drawer_layout);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);

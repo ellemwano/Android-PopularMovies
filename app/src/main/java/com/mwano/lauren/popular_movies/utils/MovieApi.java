@@ -6,7 +6,6 @@ import android.util.Log;
 import com.mwano.lauren.popular_movies.BuildConfig;
 
 import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
 import java.net.URL;
 
 /**

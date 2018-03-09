@@ -18,4 +18,12 @@
 
     <!-- Error messages -->
     <string name="connection_error_message">Something went wrong. Please make sure you entered your API key and/or check your internet connection</string>
+
+    <!-- Content description -->
+    <string name="descrip_backdrop">The movie\'s backdrop image</string>
+    <string name="descrip_poster">The movie\'s poster</string>
+
+    <!-- Details Activity -->
+    <string name="coming_soon">(More features coming soon...)</string>
+
 </resources>
