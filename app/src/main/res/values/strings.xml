@@ -14,6 +14,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- OnNavigationItemSelected Menu toasts -->
-    <string name="toast_favourites">Coming soon. Will get my Favourite Movies</string>
+    <string name="toast_favourites">Coming soon. Will show your Favourite Movies</string>
 
+    <!-- Error messages -->
+    <string name="connection_error_message">Something went wrong. Please make sure you entered your API key and/or check your internet connection</string>
 </resources>

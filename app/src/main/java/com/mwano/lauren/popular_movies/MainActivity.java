@@ -14,6 +14,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
@@ -21,6 +23,8 @@ import com.mwano.lauren.popular_movies.model.Movie;
 import com.mwano.lauren.popular_movies.utils.JsonUtils;
 import com.mwano.lauren.popular_movies.utils.MovieApi;
 import com.mwano.lauren.popular_movies.utils.NetworkUtils;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     private RecyclerView mRecyclerView;
     private MovieAdapter mMovieAdapter;
+    private TextView mConnectionErrorMessageDisplay;
+    private int mColumnsNumber;
     ArrayList<Movie> movies;
     private DrawerLayout mDrawer;
     private Toolbar mToolbar;
@@ -50,8 +56,12 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
         // Get reference to RecyclerView
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_movies);
-        // Set GridLinearLayout to RecyclerView
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        // Get reference to error TextView
+        mConnectionErrorMessageDisplay = (TextView) findViewById(R.id.connection_error_message_tv);
+        // Set GridLinearLayout to RecyclerView, 2 columns if vertical, 4 columns if horizontal
+        // (Source code, Udacity forum mentor Nisha Shinde: https://discussions.udacity.com/t/gridlayoutmanager-recyclerview/499251/4)
+        mColumnsNumber = (int) getResources().getInteger(R.integer.num_of_columns);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, mColumnsNumber));
         mRecyclerView.setHasFixedSize(true);
         // Create new Adapter and set to RecyclerView in layout
         mMovieAdapter = new MovieAdapter(this, movies, this);
@@ -80,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
         loadMovieData(POPULAR);
         setTitle(R.string.my_app_title);
-        //Log.i(TAG, String.valueOf(movies));
         }
     }
 
@@ -138,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
             if (movies != null) {
                 mMovieAdapter.setMovieData(movies);
             } else {
+                showConnectionErrorMessage();
                 Log.i(TAG, "Error displaying movies");
             }
         }
@@ -172,7 +182,17 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     }
 
     private void loadMovieData(String sortMode) {
+        showMovieDataView();
         new FetchMoviesTask().execute(sortMode);
     }
 
+    private void showMovieDataView() {
+        mConnectionErrorMessageDisplay.setVisibility(View.INVISIBLE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void showConnectionErrorMessage() {
+        mRecyclerView.setVisibility(View.INVISIBLE);
+        mConnectionErrorMessageDisplay.setVisibility(View.VISIBLE);
+    }
 }
